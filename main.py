@@ -22,6 +22,8 @@ for i in user_prompt_list:
 
 h, m, s, p = input_list
 print('The video time entered is',datetime.time(int(h), int(m), int(s)),'and the pace required is',p)
+print()
 
-actual_video_runtime = user_input.new_runtime(input_list)
-print('At a pace of {0}, the final video runtime would be {1}'.format(p, actual_video_runtime))
+actual_video_runtime, time_saved = user_input.new_runtime(input_list)
+print('At a pace of {0}, the final video runtime would be {1}\n'.format(p, actual_video_runtime))
+print('You will save %.1f%% of time!' % (time_saved * 100))

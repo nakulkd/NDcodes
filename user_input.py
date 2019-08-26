@@ -1,7 +1,7 @@
 # Module which creates the class obj for user inputs
 # Methods involve input validation and value formatting for use in `main`
 
-import datetime
+import datetime, re
 
 # class user_input: # To create class obj
     # def __init__(self, input_list):
@@ -11,20 +11,15 @@ import datetime
         # self.time_val = self.input_list[0:3]
         # self.
 
-pDict = {'1x':1,
-         '1.25x':0.875,
-         '1.5x':0.75,
-         '1.75x':0.625,
-         '2x':0.5}
-
 def new_runtime(input_list):
     h, m, s, p = input_list
     time_val_s = datetime.timedelta(hours=int(h),
                                     minutes=int(m),
                                     seconds=int(s))
     
-    p_val = pDict[p]
-    return time_val_s * p_val
+    pattern = r'\d\.\d'
+    p_val = re.findall(pattern, p)
+    return (time_val_s / float(p_val[0])), (1 - (1/float(p_val[0])))
 
 # foo = ['2', '10', '33', '1.5x']
 # print(foo)
